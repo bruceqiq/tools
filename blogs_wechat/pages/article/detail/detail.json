@@ -1,0 +1,16 @@
+{
+  "navigationBarTitleText": "文章详情",
+  "backgroundColorTop": "#fff",
+  "backgroundColorBottom": "#fff",
+  "onReachBottomDistance": 0,
+  "usingComponents": {
+    "tui-icon": "/components/icon/icon",
+    "tui-tag": "/components/tag/tag",
+    "tui-list-cell": "/components/list-cell/list-cell",
+    "tui-badge": "/components/badge/badge",
+    "tui-fab": "/components/tui-fab/tui-fab",
+    "tui-modal": "/components/modal/modal",
+    "tui-button": "/components/button/button"
+    
+  }
+}

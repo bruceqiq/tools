@@ -1,0 +1,49 @@
+<view class="container">
+	<scroll-view scroll-x scroll-with-animation class="tab-view" scroll-left="{{scrollLeft}}">
+		<view wx:for="{{tabbar}}" wx:key="{{index}}" data-id="{{item.id}}" class="tab-bar-item {{currentTab==index ? 'active' : ''}}" data-current="{{index}}" catchtap="swichNav">
+			<text class="tab-bar-title">{{item.title}}</text>
+		</view>
+	</scroll-view>
+	<view class="tui-searchbox">
+		<view class="tui-rolling-search">
+			<input style="width:100%;" bindconfirm="search" placeholder="输入查询内容..." confirm-type="search"></input>
+		</view>
+	</view>
+	<!-- banner -->
+	<swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}">
+		<swiper-item wx:for="{{banner}}" wx:key="{{index}}" catchtap="bannerDetail">
+			<view class="tui-banner-title">{{item.title}}</view>
+			<image src="{{item.cover}}" class="tui-slide-image" bind:tap="redirect" data-url="{{item.url}}" mode="widthFix" />
+		</swiper-item>
+	</swiper>
+	<!-- 新闻列表 -->
+	<view class="tui-news-view">
+		<block wx:for="{{newsList}}" wx:key="{{index}}">
+			<tui-list-cell tui-cell-class="tui-news-cell" bind:click="detail" data-title="{{item.title}}" data-id="{{item.id}}">
+				<view class="tui-news-picbox tui-w220 tui-h165">
+					<image src="{{item.cover}}" mode="widthFix" class="tui-block"></image>
+				</view>
+				<view class="tui-news-tbox tui-flex-column tui-flex-between tui-h165">
+					<view class="tui-news-title">{{item.title}}</view>
+					<view class="tui-sub-box">
+						<view class="tui-sub-source">{{item.author}}</view>
+						<view class="tui-sub-cmt">
+							<view>{{item.reading}}阅读</view>
+							<tui-tag size="small" plain="{{true}}" shape="circleRight" tui-tag-class="tui-tag" wx:if="{{item.is_top}}">
+								<view class="tui-scale">置顶</view>
+							</tui-tag>
+							<tui-tag size="small" plain="{{true}}" shape="circleRight" tui-tag-class="tui-tag" wx:if="{{item.is_hot}}">
+								<view class="tui-scale">热门</view>
+							</tui-tag>
+						</view>
+					</view>
+				</view>
+			</tui-list-cell>
+		</block>
+	</view>
+	<tui-tips id="tui-tips-ctx"></tui-tips>
+	<!-- 加载loadding -->
+	<tui-loadmore visible="{{loadding}}" index="3" type="primary"></tui-loadmore>
+	<tui-nomore visible="{{!pullUpOn}}" bgcolor="#f2f2f2"></tui-nomore>
+	<!-- 加载loadding -->
+</view>

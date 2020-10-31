@@ -1,0 +1,39 @@
+var formatDuration = (function(sec) {
+    sec = undefined === sec ? 0 : sec;
+    var sec_num = parseInt(sec, 10);
+    var hours = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+    if (hours < 10) {
+        hours = "0" + hours
+    };
+    if (minutes < 10) {
+        minutes = "0" + minutes
+    };
+    if (seconds < 10) {
+        seconds = "0" + seconds
+    };
+    return (minutes + ':' + seconds)
+});
+var formatViewCount = (function(count) {
+    if (count == 0) {
+        count = 1 + '万+'
+    } else if (count > 0 && count < 10) {
+        count = count + '万+'
+    } else if (count >= 10 && count < 100) {
+        count = Math.floor(count / 10) + '万+'
+    } else if (count >= 100 && count < 1000) {
+        count = Math.floor(count / 100) + '万+'
+    } else if (count >= 1000 && count < 10000) {
+        count = Math.floor(count / 1000) + '万+'
+    } else if (count >= 10000 && count < 100000) {
+        count = 10 + '万+'
+    } else if (count >= 100000) {
+        count = Math.floor(count / 10000) + '万+'
+    };
+    return (count + ' 播放')
+});
+module.exports = ({
+    formatDuration: formatDuration,
+    formatViewCount: formatViewCount,
+});

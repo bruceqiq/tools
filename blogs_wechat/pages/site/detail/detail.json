@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "工具介绍",
+  "backgroundColorTop": "#fff",
+  "backgroundColorBottom": "#fff",
+  "onReachBottomDistance": 0,
+  "usingComponents": {
+    "tui-icon": "/components/icon/icon",
+    "tui-tag": "/components/tag/tag",
+    "tui-list-cell": "/components/list-cell/list-cell",
+    "tui-modal": "/components/modal/modal",
+    "tui-button": "/components/button/button"
+  }
+}

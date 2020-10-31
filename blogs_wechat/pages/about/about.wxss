@@ -1,0 +1,48 @@
+page {
+  background: #fff;
+  color: #333;
+}
+
+.container {
+  padding: 40rpx 30rpx 110rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.tui-article {
+  /* text-indent: 2em; */
+  font-size: 34rpx;
+  padding-bottom: 40rpx;
+  line-height: 60rpx;
+  text-align: justify;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+
+.tui-operate-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.tui-tag-class {
+  min-width: 130rpx;
+  padding: 20rpx 52rpx !important;
+  font-size: 26rpx !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tui-black {
+  color: #333;
+}
+
+.tui-share-btn {
+  display: block;
+  background: none;
+  margin: 0;
+  padding: 0;
+}

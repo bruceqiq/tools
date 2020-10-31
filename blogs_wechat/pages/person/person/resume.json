@@ -1,0 +1,11 @@
+{
+  "backgroundColorTop": "#fff",
+  "navigationBarTitleText": "个人简历",
+  "usingComponents": {
+    "tui-icon": "/components/icon/icon",
+    "tui-time-axis": "/components/time-axis/time-axis",
+    "tui-timeaxis-item": "/components/timeaxis-item/timeaxis-item",
+    "tui-collapse": "/components/tui-collapse/tui-collapse",
+    "tui-list-cell": "/components/list-cell/list-cell"
+  }
+}

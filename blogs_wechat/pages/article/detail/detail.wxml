@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="tui-news-title">
+    {{content.title}}
+  </view>
+  <view class="tui-sub-info">
+    <view class="tui-sub-left">
+      <text class="tui-author">{{content.author}}</text>
+      <text>{{(!content.publish_time)?(content.created_at):(content.publish_time)}}</text>
+    </view>
+    <view class="tui-sub-right">阅读 {{content.reading}}</view>
+    <view class="tui-sub-right">点赞 {{content.click}}</view>
+  </view>
+  <view class="tui-news-content">
+    <view class="tui-article" style="background-color:white;overflow-x:hidden;">
+      <rich-text nodes="{{content.content}}"></rich-text>
+    </view>
+  </view>
+
+	<view class="tui-operation" wx:if="{{show == 1}}">
+		<view class="tui-operation-left tui-col-7 tui-height-full tui-ptop-zero">
+			<view class="tui-operation-item" bindtap="show8">
+				<tui-icon name="friendadd" size="29"  color='#444'></tui-icon>
+			</view>
+		</view>
+		<view class="tui-operation-right tui-right-flex tui-col-12">
+			<view class="tui-operation-item" bindtap="collection">
+				<tui-icon name="{{isCollection?'star-fill':'star'}}" size="29" color="{{isCollection?'#5677fc':'#444'}}"></tui-icon>
+			</view>
+			<view class="tui-operation-item" hover-class="opcity" hover-stay-time="150">
+				<button open-type="share" class="tui-share-btn">
+					<tui-icon name="share" size="31" color='#444'></tui-icon>
+				</button>
+			</view>
+		</view>
+	</view>
+
+	<tui-modal show="{{modal8}}" bind:cancel="hide8" custom="{{true}}">
+		<view class="tui-modal-custom">
+			<view class="tui-modal-custom-text">点击图片可保存二维码</view>
+			<image src="https://youpaiyun.qqdeveloper.com/qrcode_for_gh_0275b8ba153f_258.jpg" data-img="https://youpaiyun.qqdeveloper.com/qrcode_for_gh_0275b8ba153f_258.jpg" bindtap="saveFile" class="tui-tips-img" style="width:500rpx;height:500rpx;"></image>
+			<view class="tui-modal-custom-text">卡二条的技术圈</view>
+			<button bindtap="copywx" data-number="qq1005349393">复制微信公众号</button>
+		</view>
+	</tui-modal>
+
+</view>

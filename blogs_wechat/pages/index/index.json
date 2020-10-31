@@ -1,0 +1,10 @@
+{
+  "backgroundColorTop": "#fff",
+  "navigationBarTitleText": "系统首页",
+  "usingComponents": {
+    "tui-icon": "/components/icon/icon",   
+     "tui-view": "/components/list-spot-view/list-spot-view",
+    "tui-cell": "/components/list-spot/list-spot",
+    "tui-badge": "/components/badge/badge"
+  }
+}

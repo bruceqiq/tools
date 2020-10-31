@@ -1,0 +1,31 @@
+<view class="container">
+	<!--banner-->
+	<view class="tui-banner-box">
+		<swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}" previous-margin="60rpx" next-margin="60rpx" bindchange="change">
+			<swiper-item wx:for="{{banner}}" wx:key="{{index}}" class="tui-banner-item">
+				<image src="{{item.cover}}" class="tui-slide-image {{current!=index?'tui-banner-scale':''}}" data-url="{{item.url}}" mode="scaleToFill" bindtap="bannerRedirect" />
+			</swiper-item>
+		</swiper>
+	</view>
+	<!--banner-->
+
+	<!--headlines-->
+	<view class="tui-rolling-news list-item">
+		<tui-icon name="news" size='22' color='red'></tui-icon>
+		<swiper vertical="{{true}}" autoplay="{{true}}" circular="{{true}}" interval="4000" class="tui-swiper">
+			<swiper-item wx:for="{{notice}}" wx:key="{{index}}" class="tui-swiper-item">
+				<view class="tui-news-item">{{item.title}}</view>
+			</swiper-item>
+		</swiper>
+	</view>
+	<!--headlines-->
+	<!--菜单-->
+	<view class="tui-classify-box">
+		<block wx:for="{{menu}}">
+			<view bind:tap="redirect" class="tui-classify-item"  data-key="{{item.key}}" data-type="{{item.type}}" data-url="{{item.url}}">
+				<image src="{{item.img}}" class="tui-classify-img" />
+				<view class="tui-classify-name">{{item.title}}</view>
+			</view>
+		</block>
+	</view>
+</view>

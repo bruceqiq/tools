@@ -1,0 +1,36 @@
+<view class="container">
+  <scroll-view scroll-y scroll-with-animation class="tab-view" scroll-top="{{scrollTop}}" style="height:{{menuHeight}}px">
+    <view wx:for="{{menuList}}" wx:key="{{index}}" class="tab-bar-item {{currentTab==index ? 'active' : ''}}" data-current="{{index}}" catchtap="swichNav">
+      <text>{{item.title}}</text>
+    </view>
+  </scroll-view>
+  <view class="right-box">
+    <!--内容部分 start 自定义可删除-->
+    <block wx:for="{{menuList}}" wx:key="{{index}}">
+      <view class="page-view" hidden="{{currentTab!==index}}">
+        <swiper indicator-dots autoplay circular interval="5000" duration="150" class="swiper">
+          <block wx:for="{{banner}}" wx:for-item="banner">
+              <swiper-item >
+                <image src="{{banner.cover}}" class="slide-image" bind:tap="redirect" data-url="{{banner.url}}" />
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class="class-box">
+          <view class="class-item">
+            <view class="class-name">{{item.title}}</view>
+            <view class="g-container">
+              <block wx:for="{{item.children}}" wx:for-item="children">
+                <view class="g-box" catchtap="productList" data-key="{{children.id}}" data-title="{{children.title}}"> 
+                <image src="{{children.cover}}" class="g-image" />
+                <view class="g-title">{{children.title}}</view>
+              </view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </block>
+    <!--内容部分 end 自定义可删除-->
+  </view>
+</view>
