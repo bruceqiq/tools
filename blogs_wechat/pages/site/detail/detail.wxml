@@ -18,7 +18,7 @@
 	<view class="tui-operate-box">
 		<button type="primary"  class="tui-share-btn" data-url="{{siteUrl}}" bindtap="copyUrl">
 			<tui-tag type="gray" shape="circle" plain="{{true}}" tui-tag-class="tui-tag-class">
-				<text class="tui-black">复制工具站点链接</text>
+				<text class="tui-black">点击复制链接</text>
 			</tui-tag>
 		</button>
 	</view>

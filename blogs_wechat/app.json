@@ -64,7 +64,7 @@
   },
   "plugins": {
       "routePlan": {
-      "version": "1.0.8",
+      "version": "1.0.10",
       "provider": "wx50b5593e81dd937a"
       },
       "chooseLocation": {
