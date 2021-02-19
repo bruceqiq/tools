@@ -1,0 +1,6 @@
+<view class="container" wx:if="{{show == 1}}">
+  <video id="tui-video" wx:if="{{show == 1}}"  show-screen-lock-button autoplay="{{false}}" src="{{videoUrl}}" title="{{title}}" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls  object-fit="fill" custom-cache="{{false}}"></video>
+  <view class="tui-container">
+    <view class="tui-news-source">{{videoSource}}：{{source}}</view>
+  </view>
+</view>

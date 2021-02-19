@@ -1,0 +1,62 @@
+<view class="bill-form">
+  <form catchsubmit="formSubmit" catchreset="formReset">
+    <!-- 收支类型 -->
+    <view class="item-list">
+      <view class="item-list-left">
+        收支类型:
+      </view>
+      <view class="item-list-right">
+        <picker mode="multiSelector" bindchange="bindCustomPickerChange" bindcolumnchange="bindCustomPickerColumnChange"
+          value="{{customIndex}}" range="{{onlyArray}}">
+          <block style="text-align: center;">
+            {{onlyArray[0][customIndex[0]]}}，{{onlyArray[1][customIndex[1]]}}，{{onlyArray[2][customIndex[2]]}}
+          </block>
+        </picker>
+      </view>
+    </view>
+    <!-- 收支金额 -->
+    <view class="item-list">
+      <view class="item-list-left">
+        收支金额:
+      </view>
+      <view class="item-list-right">
+        <input type="digit" class="input" name="money" placeholder="0.00" value="{{billInfo.money}}" />
+      </view>
+    </view>
+    <!-- 日期 -->
+    <view class="item-list">
+      <view class="item-list-left">
+        收支日期:
+      </view>
+      <view class="item-list-right">
+        <picker mode="date" bindchange="selectDate" start="2020-10-31" end="2100-12-31">
+          {{currentDate}}
+        </picker>
+      </view>
+    </view>
+    <!-- 收支标签 -->
+    <view class="item-list">
+      <view class="item-list-left">
+        收支账户:
+      </view>
+      <view class="item-list-right">
+        <picker mode="selector" value="{{tagIndex}}" range="{{tags}}" bindchange="selectTag">
+          {{tags[tagIndex]}}
+        </picker>
+      </view>
+    </view>
+    <!-- 收支备注 -->
+    <view class="item-list text-box">
+      <view class="item-list-left">
+        收支备注:
+      </view>
+      <view class="item-list-right">
+        <textarea name="remark" id="" rows="5" class="text-input" placeholder="给账单输入一些备注信息..." auto-height value="{{billInfo.remark}}"></textarea>
+      </view>
+    </view>
+    <!-- 提交按钮 -->
+    <view class="submit-card">
+      <button style="width:100%;background-color:#008374;" type="primary" formType="submit" class="submit-card">提交账单</button>
+    </view>
+  </form>
+</view>

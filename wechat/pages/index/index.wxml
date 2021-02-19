@@ -1,0 +1,53 @@
+<view class="container">
+	<!--banner-->
+	<view class="tui-banner-box">
+		<swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper"
+			circular="{{true}}" previous-margin="60rpx" next-margin="60rpx" bindchange="change">
+			<swiper-item wx:for="{{banner}}" wx:key="{{index}}" class="tui-banner-item">
+				<image src="{{item.cover}}" class="tui-slide-image {{current!=index?'tui-banner-scale':''}}"
+					data-url="{{item.url}}" mode="scaleToFill" bindtap="bannerRedirect" />
+			</swiper-item>
+		</swiper>
+	</view>
+	<!--banner-->
+
+	<!--headlines-->
+	<view class="tui-rolling-news list-item">
+		<tui-icon name="news" size='22' color='red'></tui-icon>
+		<swiper vertical="{{true}}" autoplay="{{true}}" circular="{{true}}" interval="4000" class="tui-swiper">
+			<swiper-item wx:for="{{notice}}" wx:key="{{index}}" class="tui-swiper-item">
+				<view class="tui-news-item">{{item.title}}</view>
+			</swiper-item>
+		</swiper>
+	</view>
+	<!--headlines-->
+	<!--菜单-->
+	<view class="tui-classify-box">
+		<block wx:for="{{menu}}">
+			<view bind:tap="redirect" class="tui-classify-item" data-key="{{item.key}}" data-type="{{item.type}}"
+				data-url="{{item.url}}">
+				<image src="{{item.img}}" class="tui-classify-img" />
+				<view class="tui-classify-name">{{item.title}}</view>
+			</view>
+		</block>
+	</view>
+	<!-- 站点导航 -->
+	<view class="site-box" hover-class="none" hover-stop-propagation="false">
+		<view class="site-title" hover-class="none" hover-stop-propagation="false">
+			优质资源
+		</view>
+		<view class="site-content" hover-class="none" hover-stop-propagation="false">
+
+			<view class="site-list" wx:for="{{site}}" bindtap="site"  data-id="{{item.id}}" data-url="{{item.site_url}}" data-collection="{{item.collection}}" data-source="{{item.source}}" data-title="{{item.title}}" data-author="{{item.author}}" data-created_at="{{item.created_at}}" data-collection="{{item.collection}}" hover-class="none">
+				<view class="site-image" hover-class="none" hover-stop-propagation="false">
+					<image class="" style="width: 100%;height: 300rpx;" src="{{item.cover}}"	mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+					</image>
+				</view>
+				<view class="site-text" hover-class="none" hover-stop-propagation="false">
+					<text>{{item.title}}</text>
+				</view>
+			</view>
+
+		</view>
+	</view>
+</view>

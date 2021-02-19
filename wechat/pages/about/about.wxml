@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="tui-news-content">
+    <view class="tui-article">
+     <rich-text nodes="{{content}}"></rich-text>
+    </view>
+  </view>
+  <view class="tui-operate-box">
+    <!-- <tui-tag type="{{isFabulous?'':'gray'}}" shape="circle" plain="{{true}}" tui-tag-class="tui-tag-class" bind:click="btnFabulous">
+      <tui-icon name="{{isFabulous?'agree-fill':'agree'}}" size="20" color="{{isFabulous?'#5677fc':'#333'}}"></tui-icon>
+      <text class="tui-black {{isFabulous?'tui-primary':''}}">{{click}}支持</text>
+    </tui-tag> -->
+    <!-- <button open-type="share" class="tui-share-btn" style="width:250rpx;">
+      <tui-tag type="gray" shape="circle" plain="{{true}}" tui-tag-class="tui-tag-class">
+        <tui-icon name="partake" size="20" color="#333"></tui-icon>
+        <text class="tui-black">分享</text>
+      </tui-tag>
+    </button> -->
+  </view>
+</view>

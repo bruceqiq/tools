@@ -1,0 +1,11 @@
+{
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "站点列表",
+  "backgroundColorBottom": "#f2f2f2",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "tui-view": "/components/list-view/list-view",
+    "tui-cell": "/components/list-cell/list-cell"
+  }
+}

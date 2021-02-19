@@ -1,0 +1,38 @@
+<view class="container">
+	<scroll-view scroll-x scroll-with-animation class="tab-view" scroll-left="{{scrollLeft}}">
+		<view wx:for="{{tabbar}}" wx:key="{{index}}" data-id="{{item.id}}"
+			class="tab-bar-item {{currentTab==index ? 'active' : ''}}" data-current="{{index}}" catchtap="swichNav">
+			<text class="tab-bar-title">{{item.title}}</text>
+		</view>
+	</scroll-view>
+	<!-- <view class="tui-searchbox">
+		<view class="tui-rolling-search">
+			<input style="width:100%;" bindconfirm="search" placeholder="输入查询内容..." confirm-type="search"></input>
+		</view>
+	</view> -->
+	<!-- banner -->
+	<swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper"
+		circular="{{true}}">
+		<swiper-item wx:for="{{banner}}" wx:key="{{index}}" catchtap="bannerDetail">
+			<view class="tui-banner-title">{{item.title}}</view>
+			<image src="{{item.cover}}" class="tui-slide-image" bind:tap="redirect" data-url="{{item.url}}" mode="widthFix" />
+		</swiper-item>
+	</swiper>
+	<!-- 新闻列表 -->
+	<block wx:for="{{newsList}}">
+		<view class="news-list" bindtap="detail" data-title="{{item.second_title}}" data-id="{{item.id}}">
+			<view class="news-list-left">
+				<image src="{{item.cover}}"></image>
+			</view>
+			<view class="news-list-right">
+				<view class="news-list-right-top">{{item.title}}</view>
+				<view class="news-list-right-bottom">{{item.author}} {{item.publish_time}}</view>
+			</view>
+		</view>
+	</block>
+	<tui-tips id="tui-tips-ctx"></tui-tips>
+	<!-- 加载loadding -->
+	<tui-loadmore visible="{{loadding}}" index="3" type="primary"></tui-loadmore>
+	<tui-nomore visible="{{!pullUpOn}}" bgcolor="#f2f2f2"></tui-nomore>
+	<!-- 加载loadding -->
+</view>

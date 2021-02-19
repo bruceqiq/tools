@@ -1,0 +1,65 @@
+<view class="top">
+  <view class="item-search-list" hover-class="none" hover-stop-propagation="false">
+    <view class="item-search-left" hover-class="none" hover-stop-propagation="false">
+      开始日期:
+    </view>
+    <view class="item-search-right" hover-class="none" hover-stop-propagation="false">
+      <picker mode="date" class="start-date search-bg" name="start_date" bindchange="selectStartDate" start="2020-12-31"
+        end="2100-12-31">
+        {{start_date}}
+      </picker>
+    </view>
+  </view>
+  <view class="item-search-list" hover-class="none" hover-stop-propagation="false">
+    <view class="item-search-left" hover-class="none" hover-stop-propagation="false">
+      结束日期:
+    </view>
+    <view class="item-search-right" hover-class="none" hover-stop-propagation="false">
+      <picker mode="date" class="end-date search-bg" name="end_date" bindchange="selectEndDate" start="2020-12-31"
+        end="2100-12-31">
+        {{end_date}}
+      </picker>
+    </view>
+  </view>
+  <view class="item-search-list" hover-class="none" hover-stop-propagation="false">
+    <view class="item-search-left" hover-class="none" hover-stop-propagation="false">
+      交易账户:
+    </view>
+    <view class="item-search-right" hover-class="none" hover-stop-propagation="false">
+      <picker mode="selector" value="{{tagIndex}}" name="account" class="search-bg" range="{{tags}}"
+        bindchange="selectTag">
+        {{tags[tagIndex]}}
+      </picker>
+    </view>
+  </view>
+  <view class="item-search-list total-money">
+    支出:{{expend}}    收入:{{income}}
+  </view>
+</view>
+
+<view class="{{index == 0 ? 'list-first list':'list'}}" wx:for="{{list}}" >
+    <view class="list-title">
+      <view class="list-title-left">
+        {{item.transaction_date}}
+      </view>
+      <view class="list-title-right">
+        <text class="expend">支出:{{item.expend_total_money}}</text><text class="income">   收入:{{item.income_total_money}}</text>
+      </view>
+    </view>
+    <view class="list-bill" wx:for="{{item.list}}" wx:for-item="bean" data-id="{{bean.id}}" bindtap="detail">
+      <view class="list-bill-image">
+        <image src="{{bean.tag.cover}}"  style="width: 100%;height: 100%;"></image>
+      </view>
+      <view class="list-bill-text">{{bean.category.name}}[{{bean.tag.name}}]</view>
+      <block wx:if="{{bean.type == 1}}">
+        <view class="list-bill-money income">+{{bean.money}}</view>
+      </block>
+      <block wx:if="{{bean.type == 2}}">
+        <view class="list-bill-money expend">-{{bean.money}}</view>
+      </block>
+    </view>
+</view>
+<view class="bill-btn">
+  <image src="https://youpaiyun.qqdeveloper.com/add-bill.png" bindtap="billCreate" style="width: 100%;height: 100%;">
+  </image>
+</view>

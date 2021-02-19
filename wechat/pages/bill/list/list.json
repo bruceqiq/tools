@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "账单列表",
+    "backgroundColorTop": "#f2f2f2",
+    "backgroundColorBottom": "#f2f2f2",
+    "enablePullDownRefresh": false,
+    "onReachBottomDistance": 50
+}

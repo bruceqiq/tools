@@ -1,0 +1,304 @@
+<view class="page {{mainBg}}{{isNight&&(mainBg==='C2'||mainBg==='C9')?'N':''}} {{isShowOverlay?'blur':''}} cube">
+    <view class="ct-landscape">
+        <view class="layer scenery-far" style="transform: translate({{accelerometerX*5}}px, 0px);">
+            <image class="scenery" src="https://mat1.gtimg.com/tianqi/weapp-weather/images/bg/{{mainBg==='C0'?'default-scenery':mainBg+(isNight&&(mainBg==='C2'||mainBg==='C9')?'N':'')+'-scenery-far'}}.png"></image>
+        </view>
+        <view class="layer scenery-in" style="transform: translate({{accelerometerX*15}}px, 0px);">
+            <image class="scenery" src="https://mat1.gtimg.com/tianqi/weapp-weather/images/bg/{{mainBg==='C0'?'default-scenery':mainBg+(isNight&&(mainBg==='C2'||mainBg==='C9')?'N':'')+'-scenery-in'}}.png"></image>
+        </view>
+        <view class="layer scenery-near" style="transform: translate({{accelerometerX*30}}px, 0px);">
+            <image class="scenery" src="https://mat1.gtimg.com/tianqi/weapp-weather/images/bg/{{mainBg==='C0'?'default-scenery':mainBg+(isNight&&(mainBg==='C2'||mainBg==='C9')?'N':'')+'-scenery-near'}}.png"></image>
+        </view>
+    </view>
+</view>
+<view bindlongpress="generateImages" class="container {{isShowOverlay?'blur':''}} cube" id="container">
+    <view class="main">
+        <view class="module-m location">
+            <navigator class="location-link" url="/pages/search/search">
+                <image class="icon-location" src="../../static/images/icon/icon_location.svg"></image>
+                <block wx:if="{{addressType==='internal'}}">
+                    <view class="tt" wx:if="{{location.province&&location.city&&location.district}}">
+                        <text class="text" wx:if="{{location.city===location.district}}">{{location.district}}</text>
+                        <text class="text" wx:else>{{location.city}} {{location.district}}</text>
+                    </view>
+                    <view class="tt" wx:elif="{{location.province&&location.city}}">
+                        <text class="text" wx:if="{{location.province===location.city}}">{{location.province}}</text>
+                        <text class="text" wx:else>{{location.province}} {{location.city}}</text>
+                    </view>
+                    <view class="tt" wx:else>
+                        <text class="text">{{location.province}}</text>
+                    </view>
+                </block>
+                <view class="tt" wx:if="{{addressType==='tourist'}}">
+                    <text>{{location.tourist}}</text>
+                </view>
+                <view class="tt" wx:if="{{addressType==='external'}}">
+                    <text class="text">{{location.country}} {{location.city}}</text>
+                </view>
+            </navigator>
+        </view>
+        <view class="module-m update-time ">
+            <text class="{{isShowUpdateTime?'':'timeFadeOut'}}">{{observeInfo.update_time}}</text>
+        </view>
+        <view class="module-m aqi-alarm">
+            <view bindtap="showPopup" class="aqi a{{airInfo.aqi_level}}" data-type="aqi" wx:if="{{addressType!=='external'}}">
+                <text class="key">{{airInfo.aqi}}</text>
+                <text class="value">{{airInfo.aqi_name}}</text>
+            </view>
+            <view class="alarms" wx:if="{{addressType!=='external'}}">
+                <view bindtap="showPopup" class="item {{index===1?'mt20':''}}" data-index="{{index}}" data-type="alarm" wx:if="{{index<2}}" wx:for="{{alarmInfo}}" wx:key="index">
+                    <view class="dot b{{item.level_name==='蓝色'?'01':''}}{{item.level_name==='黄色'?'02':''}}{{item.level_name==='橙色'?'03':''}}{{item.level_name==='红色'?'04':''}}" wx:if="{{item.type_code==='00'}}"></view>
+                    <view class="dot b{{item.level_code}}" wx:else></view>
+                    <text class="msg">{{item.type_name}}预警</text>
+                </view>
+            </view>
+        </view>
+        <view class="module-m temperature">
+            <text class="num {{observeInfo.isLessZero}} {{observeInfo.dot}}">{{observeInfo.degree}}</text>
+        </view>
+        <view class="module-m weather">
+            <text class="txt">{{observeInfo.weather_short}}</text>
+        </view>
+        <view class="module-m wind humidity mt16">
+            <text class="txt {{toggleWindHumidity?'fadeOutUp':'fadeInUp'}}">{{observeInfo.wind_direction_cn}} {{observeInfo.wind_power}}</text>
+            <text class="txt {{toggleWindHumidity?'fadeInUp':'fadeOutUp'}}">{{observeInfo.humidity}}</text>
+        </view>
+        <view class="module-m swiper_video" hidden="{{newHidden}}">
+            <image class="icon" src="../../static/images/icon/icon_info.png"></image>
+            <view class="marquee_container " style="background:{{broadcast_arr.back_color}};font-size:{{broadcast_arr.font_size}}rpx;">
+                <view class="marquee_text" style="--marqueeWidth--:{{-broadcast_arr.width_mal}}px;--speed--:{{broadcast_arr.time}}s;width:{{broadcast_arr.width_mal}}px;">
+                    <view bindtap="gotoVideo" class="" data-fun="lunbo" data-img="{{item.bimg}}" data-index="{{index}}" data-modular="{{item.order!=undefined?'yunying':'video'}}" data-title="{{item.title}}" data-vid="{{item.id}}" data-viewcount="{{item.view_count}}" style="color:{{broadcast_arr.text_color}};margin-left:{{index!=0?broadcast_arr.starspos*2:0}}rpx;" wx:for="{{topVideos}}" wx:key="index">
+                        <text>{{item.title}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="details">
+        <view class="two-days">
+            <view class="today">
+                <view class="row1">
+                    <text>今天</text>
+                    <text>{{daysInfo[1].max_degree}}/{{daysInfo[1].min_degree}}°C</text>
+                </view>
+                <view class="row2">
+                    <text>{{daysInfo[1].day_weather_short===daysInfo[1].night_weather_short?daysInfo[1].day_weather_short:daysInfo[1].day_weather_short+'转'+daysInfo[1].night_weather_short}}</text>
+                    <image class="w-icon" src="../../static/images/icon_weather2/{{daysInfo[1].day_weather_code||'default'}}.svg"></image>
+                </view>
+            </view>
+            <view class="pipe-line"></view>
+            <view class="tomorrow">
+                <view class="row1">
+                    <text>明天</text>
+                    <text>{{daysInfo[2].max_degree}}/{{daysInfo[2].min_degree}}°C</text>
+                </view>
+                <view class="row2">
+                    <text>{{daysInfo[2].day_weather_short===daysInfo[2].night_weather_short?daysInfo[2].day_weather_short:daysInfo[2].day_weather_short+'转'+daysInfo[2].night_weather_short}}</text>
+                    <image class="w-icon" src="../../static/images/icon_weather2/{{daysInfo[2].day_weather_code||'default'}}.svg"></image>
+                </view>
+            </view>
+        </view>
+        <!-- 视频轮播 -->
+        <!-- <view class="swiper_video swiper_pics">
+            <swiper autoplay="{{autoplay}}" bindtap="swiperChange" duration="{{duration}}" interval="{{interval}}">
+                <swiper-item bindtap="gotoActivity" data-channel="{{item.channel}}" data-index="{{index}}" data-path="{{item.path}}" data-vid="{{item.vid}}" wx:for="{{imgData}}" wx:key="index">
+                    <image src="{{item.image}}"></image>
+                </swiper-item>
+            </swiper>
+        </view> -->
+        <view class="hours mt12" wx:if="{{addressType!=='external'}}">
+            <scroll-view scrollX="true">
+                <view class="w-hour w-{{hoursInfo.length}}">
+                    <view class="item-hour" wx:for="{{hoursInfo}}" wx:key="index">
+                        <text class="hour-min">{{item.time}}</text>
+                        <image class="w-icon" src="../../static/images/icon_weather2/{{item.weather_code||'00'}}.svg"></image>
+                        <text class="w-degree {{item.de}}">{{item.degree}}</text>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view bindtap="changeToggle" class="button_days mt12" hidden="{{selectedFlag}}">
+            <text>点击查看5日天气预报和天气指数</text>
+            <image class="icon_down" src="../../static/images/icon/icon_down.png"></image>
+        </view>
+        <view class="days {{addressType!=='external'?'mt12':''}}" hidden="{{!selectedFlag}}">
+            <view class="w-day">
+                <view class="item-day {{index===0?'yesterday':''}}" wx:for="{{daysInfo}}" wx:key="index">
+                    <view class="w-week">
+                        <text class="t1">{{item.weekDay}}</text>
+                        <text class="t1 mt10">{{item.date}}</text>
+                        <text class="t2 mt30">{{item.day_weather_short}}</text>
+                        <image class="w-icon mt30" src="../../static/images/icon_weather2/{{item.day_weather_code||'00'}}.svg"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="w-line" wx:if="{{!isShowOverlay}}">
+                <canvas canvasId="daysLineCanvas" class="day-canvas"></canvas>
+            </view>
+            <view class="w-night">
+                <view class="item-day {{index===0?'yesterday':''}} {{index===1?'today':''}}" wx:for="{{daysInfo}}" wx:key="index">
+                    <view class="w-week">
+                        <image class="w-icon" src="../../static/images/icon_weather2/{{item.night_weather_code||'00'}}.svg"></image>
+                        <text class="t2 mt30">{{item.night_weather_short}}</text>
+                        <text class="t1 mt30">{{item.night_wind_direction}}</text>
+                        <text class="t1 mt10">{{item.night_wind_power}}级</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="service mt12" hidden="{{!selectedFlag}}" wx:if="{{addressType==='internal'}}">
+            <swiper bindchange="swiperChange" class="service-swiper">
+                <swiper-item class="service-swiper-item">
+                    <view bindtap="showPopup" class="item-service" data-index="{{index}}" data-type="service" wx:if="{{item&&index<8}}" wx:for="{{indexInfo}}" wx:key="index">
+                        <view class="item-inner">
+                            <block wx:if="{{item.type==='clothes'}}">
+                                <image class="icon-service" mode="aspectFit" src="../../static/images/icon_service/s-clothes-shirt.svg" wx:if="{{item.info==='炎热'||item.info==='热'}}"></image>
+                                <image class="icon-service" mode="aspectFit" src="../../static/images/icon_service/s-clothes-blouse.svg" wx:if="{{item.info==='舒适'||item.info==='较舒适'}}"></image>
+                                <image class="icon-service" mode="aspectFit" src="../../static/images/icon_service/s-clothes-sweater.svg" wx:if="{{item.info==='较冷'}}"></image>
+                                <image class="icon-service" mode="aspectFit" src="../../static/images/icon_service/s-clothes-cotton.svg" wx:if="{{item.info==='冷'||item.info==='寒冷'}}"></image>
+                            </block>
+                            <image class="icon-service" mode="aspectFit" src="../../static/images/icon_service/s-{{item.type}}.svg" wx:else></image>
+                            <text class="t1 mt16">{{item.info}}</text>
+                            <text class="t2">{{item.name}}</text>
+                        </view>
+                    </view>
+                </swiper-item>
+                <swiper-item class="service-swiper-item">
+                    <view bindtap="showPopup" class="item-service" data-index="{{index}}" data-type="service" wx:if="{{item&&index>=8}}" wx:for="{{indexInfo}}" wx:key="index">
+                        <view class="item-inner">
+                            <image class="icon-service" mode="aspectFit" src="../../static/images/icon_service/s-{{item.type}}.svg"></image>
+                            <text class="t1 mt16">{{item.info}}</text>
+                            <text class="t2 {{item.type==='diffusion'?'smaller':''}}">{{item.name}}</text>
+                        </view>
+                    </view>
+                </swiper-item>
+            </swiper>
+            <view class="swiper-dots">
+                <view class="dot {{swiperCurIndex===index?'active':''}}" wx:for="{{swiperItems}}" wx:key="index"></view>
+            </view>
+        </view>
+        <!-- <view class="mod_video mt12">
+            <view class="nav">
+                <text bindtap="changeChannel" class="item {{currentIndex===index?'active':''}}" data-fun="{{item.fun}}" data-index="{{index}}" data-name="{{item.title}}" wx:for="{{channel}}" wx:key="index">{{item.title}}</text>
+            </view>
+            <view class="videoList">
+                <view bindtap="gotoVideo" class="mod_poster" data-fun="play" data-img="{{item.bimg}}" data-modular="yunying" data-title="{{item.title}}" data-vid="{{item.id}}" data-viewcount="{{item.view_count}}" wx:for="{{blVideos}}">
+                    <image class="poster" src="{{item.bimg}}"></image>
+                    <view>
+                        <image class="play_icon" src="/images/icon/play-btn.png"></image>
+                        <view class="play_info left">
+                            <text>{{tools.formatViewCount(item.view_count)}}</text>
+                        </view>
+                        <view class="play_info">
+                            <text>{{tools.formatDuration(item.duration)}}</text>
+                        </view>
+                        <view class="toptitle two_row">
+                            <text class="label">{{item.label}}</text>{{item.title}}</view>
+                    </view>
+                </view>
+                <view bindtap="gotoVideo" class="mod_poster" data-fun="play" data-modular="video" data-vid="{{video.id}}" wx:for="{{relateVideos}}" wx:for-item="video">
+                    <image class="poster" src="{{video.bimg}}"></image>
+                    <view>
+                        <image class="play_icon" src="/images/icon/play-btn.png"></image>
+                        <view class="play_info left">
+                            <text>{{tools.formatViewCount(video.view_count)}}</text>
+                        </view>
+                        <view class="play_info">
+                            <text>{{tools.formatDuration(video.duration)}}</text>
+                        </view>
+                        <view class="toptitle two_row">{{video.title}}</view>
+                    </view>
+                </view>
+            </view>
+        </view> -->
+    </view>
+</view>
+<view class="overlay {{isShowOverlay?isFadeInOverlay?'fadeIn':'fadeOut':''}} cube" wx:if="{{isShowOverlay}}">
+    <view class="popup {{isShowOverlay?isFadeInOverlay?'slideInUp':'slideOutDown':''}}" wx:if="{{popupType==='aqi'}}">
+        <view bindtap="hidePopup" class="close">
+            <image class="btn" src="../../images/icon/close.svg"></image>
+        </view>
+        <view class="air-details">
+            <view class="air-aqi">
+                <view class="main m{{airInfo.aqi_level}}">
+                    <text class="key">空气质量指数</text>
+                    <text class="value mt30">{{airInfo.aqi}}</text>
+                    <text class="txt mt40">{{airInfo.aqi_name}}</text>
+                    <image class="bg" mode="" src="../../static/images/aqi_bg/{{airInfo.aqi_level}}.png"></image>
+                </view>
+            </view>
+            <view class="air-indexs" wx:if="{{!(airInfo['pm2.5']==='?'||airInfo['pm10']==='?'||airInfo['so2']==='?'||airInfo['no2']==='?'||airInfo['no2']==='?'||airInfo['o3']==='?'||airInfo['co']==='?')}}">
+                <view class="item">
+                    <view class="inner">
+                        <text class="value">{{airInfo['pm2.5']}}</text>
+                        <text class="key mt10">PM2.5</text>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="inner">
+                        <text class="value">{{airInfo['pm10']}}</text>
+                        <text class="key mt10">PM10</text>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="inner">
+                        <text class="value">{{airInfo['so2']}}</text>
+                        <text class="key mt10">SO2</text>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="inner">
+                        <text class="value">{{airInfo['no2']}}</text>
+                        <text class="key mt10">NO2</text>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="inner">
+                        <text class="value">{{airInfo['o3']}}</text>
+                        <text class="key mt10">O3</text>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="inner">
+                        <text class="value">{{airInfo['co']}}</text>
+                        <text class="key mt10">CO</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="popup {{isShowOverlay?isFadeInOverlay?'slideInUp':'slideOutDown':''}} alarm-b{{alarmInfo[popupAlarmIndex].type_code==='00'?alarmInfo[popupAlarmIndex].level_name==='蓝色'?'01':''||alarmInfo[popupAlarmIndex].level_name==='黄色'?'02':''||alarmInfo[popupAlarmIndex].level_name==='橙色'?'03':''||alarmInfo[popupAlarmIndex].level_name==='红色'?'04':'':alarmInfo[popupAlarmIndex].level_code}}" wx:if="{{popupType==='alarm'}}">
+        <view class="hd">
+            <text class="title">{{alarmInfo[popupAlarmIndex].type_name}}{{alarmInfo[popupAlarmIndex].level_name}}预警</text>
+        </view>
+        <view class="bd">
+            <view class="inner">
+                <text>{{alarmInfo[popupAlarmIndex].detail}}</text>
+            </view>
+            <view bindtap="hidePopup" class="close-btn mt40">
+                <text>我知道了</text>
+            </view>
+        </view>
+    </view>
+    <view class="popup {{isShowOverlay?isFadeInOverlay?'slideInUp':'slideOutDown':''}} service-{{indexInfo[popupServiceIndex].type}}" wx:if="{{popupType==='service'}}">
+        <view class="hd">
+            <text class="title">{{indexInfo[popupServiceIndex].name}}</text>
+            <text class="title" wx:if="{{indexInfo[popupServiceIndex].type!=='carlimit'}}">指数</text>
+        </view>
+        <view class="bd">
+            <view class="inner">
+                <text>{{indexInfo[popupServiceIndex].detail}}</text>
+            </view>
+            <view bindtap="hidePopup" class="close-btn mt40">
+                <text>我知道了</text>
+            </view>
+        </view>
+    </view>
+</view>
+<canvas canvasId="shareQRcode" class="{{showcanvas?'hidcanvas':'showcanvas'}}" style="width: 750px; height: 1116px;position:fixed;left:100000px;top:-100000px;"></canvas>
+<!-- <view bindtap="shareImg" class="share-btn">
+    <image class="icon-share" src="../../static/images/icon/icon_share.svg"></image>
+</view> -->
+<audio bindended="playEnd" id="myAudio" src="data:audio/mpeg;base64,{{audioSrc}}"></audio>
+<view bindtap="controlAudio" class="audio-btn {{isPlaying?'play-audio':''}}" wx:if="{{isShowAudio}}"></view>
+<wxs module="tools" src="tools.wxs" />

@@ -1,0 +1,52 @@
+<view class="container">
+	<view class="tui-news-title">
+		{{title}}
+	</view>
+	<view class="tui-sub-info">
+		<view class="tui-sub-left">
+			<text class="tui-author">{{author}}</text>
+			<text>{{created_at}}</text>
+		</view>
+		<view class="tui-sub-right">收藏 {{collection}}</view>
+	</view>
+	<view class="tui-news-content">
+		<view class="tui-article">
+			<rich-text class="" nodes="{{content}}"></rich-text>
+		</view>
+	</view>
+	<view class="tui-news-source">消息参考来源：{{source}}</view>
+	<view class="tui-operate-box">
+		<button type="primary"  class="tui-share-btn" data-url="{{siteUrl}}" bindtap="copyUrl">
+			<tui-tag type="gray" shape="circle" plain="{{true}}" tui-tag-class="tui-tag-class">
+				<text class="tui-black">点击复制链接</text>
+			</tui-tag>
+		</button>
+	</view>
+
+	<view class="tui-operation" wx:if="{{show == 1}}">
+		<view class="tui-operation-left tui-col-7 tui-height-full tui-ptop-zero">
+			<view class="tui-operation-item" bindtap="show8">
+				<tui-icon name="friendadd" size="29"  color='#444'></tui-icon>
+			</view>
+		</view>
+		<view class="tui-operation-right tui-right-flex tui-col-12">
+			<view class="tui-operation-item" bindtap="collection">
+				<tui-icon name="{{isCollection == 1?'star-fill':'star'}}" size="29" color="{{isCollection == 1?'#5677fc':'#444'}}"></tui-icon>
+			</view>
+			<view class="tui-operation-item" hover-class="opcity" hover-stay-time="150">
+				<button open-type="share" class="tui-share-btn">
+					<tui-icon name="share" size="31" color='#444'></tui-icon>
+				</button>
+			</view>
+		</view>
+	</view>
+
+	<tui-modal show="{{modal8}}" bind:cancel="hide8" custom="{{true}}" >
+		<view class="tui-modal-custom">
+			<view class="tui-modal-custom-text">点击可保存二维码</view>
+			<image src="{{public_cover}}" data-img="{{public_cover}}" bindtap="saveFile" class="tui-tips-img" style="width:500rpx;height:500rpx;"></image>
+			<view class="tui-modal-custom-text">{{public_name}}</view>
+			<button bindtap="copywx" data-number="{{public_number}}">复制微信公众号</button>
+		</view>
+	</tui-modal>
+</view>

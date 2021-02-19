@@ -1,0 +1,199 @@
+page {
+  background: #fff;
+  color: #333;
+}
+
+.container {
+  padding: 40rpx 30rpx 110rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.tui-news-title {
+  font-size: 48rpx;
+  /* font-weight: 500; */
+  text-align: justify;
+}
+
+.tui-sub-info {
+  padding-top: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.tui-author {
+  color: #5677fc;
+  padding-right: 20rpx;
+}
+
+.tui-article {
+  /* text-indent: 2em; */
+  font-size: 34rpx;
+  padding-bottom: 40rpx;
+  line-height: 60rpx;
+  text-align: justify;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.tui-article-pic {
+  width: 100%;
+  display: block;
+  margin-bottom: 40rpx;
+}
+
+.tui-news-source {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.tui-operate-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 60rpx 40rpx; */
+  box-sizing: border-box;
+}
+
+.tui-tag-class {
+  min-width: 70rpx;
+  padding: 20rpx 52rpx !important;
+  font-size: 26rpx !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tui-black {
+  color: #333;
+  padding-left: 12rpx;
+}
+
+.tui-share-btn {
+  display: block;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+.rich-img{
+  width: 100%;
+  height: auto;
+}
+
+
+.tui-operation {
+  width: 100%;
+  height: 100rpx;
+  /* box-sizing: border-box; */
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 99999;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tui-safearea-bottom{
+  width: 100%;
+  height: env(safe-area-inset-bottom);
+}
+
+.tui-operation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-top: 1rpx solid #eaeef1;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+
+.tui-operation-left {
+  display: flex;
+  align-items: center;
+  /* padding-left: 16%; */
+}
+
+.tui-operation-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.tui-operation-right {
+  height: 100rpx;
+  box-sizing: border-box;
+  padding-top: 0;
+}
+
+.tui-badge-class {
+  color: #5677fc !important;
+  position: absolute;
+  top: -6rpx;
+  padding: 2px 4px !important;
+}
+
+.tui-right-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.tui-col-7 {
+  width: 58.33333333%;
+}
+
+.tui-col-5 {
+  width: 41.66666667%;
+}
+
+.tui-share-btn {
+  display: block;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tui-modal-custom {
+  text-align: center;
+}
+
+.tui-tips-img {
+  /* width: 100%;
+  height: 100%; */
+  margin-top: 20rpx;
+}
+
+.tui-modal-custom-text {
+  font-size: 30rpx;
+  color: #333;
+  padding: 20rpx 0;
+}
+
+.tui-prompt-title {
+  padding-bottom: 20rpx;
+  font-size: 34rpx;
+}
+
+.tui-btn-mtop {
+  margin-top: 36rpx;
+}
+
+.tui-modal-custom {
+  text-align: center;
+}
+
+.opt-btn{
+  float: left;
+}

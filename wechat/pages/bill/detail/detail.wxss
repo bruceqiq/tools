@@ -1,0 +1,92 @@
+page {
+    background-color: rgba(222 228 232);
+}
+
+.bill-detail {
+    width:100%;
+    height:auto;
+    margin-top: 6rpx;
+    background-color: whitesmoke;
+    border-radius: 1%;
+}
+
+.detail-top {
+    width: 96%;
+    height: 100rpx;
+    padding-top: 40rpx;
+}
+
+.bill-top-image {
+    width: 50%;
+    height: 64rpx;
+    text-align: right;
+    float: left;
+    line-height: 64rpx;
+}
+
+.bill-top-text {
+    width: 50%;
+    height: 64rpx;
+    font-size: larger;
+    float: left;
+    line-height: 64rpx;
+}
+
+.detail-list {
+    width: 100%;
+    height: auto;
+}
+
+.bill-list {
+    width: 96%;
+    margin-left: 2%;
+    border-bottom: 2rpx dashed #008374;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.bill-list-left {
+    float: left;
+    text-align: left;
+    width: 28%;
+    font-weight: bold;
+}
+
+.bill-list-righ {
+    float: left;
+    text-align: left;
+    width: 72%;
+}
+
+.botton-no-line {
+    height: auto;
+    border-bottom: 0rpx dashed #008374;
+    line-height: 70rpx;
+    min-height: 100rpx;
+}
+
+.bill-btn {
+    width: 96%;
+    height:100rpx;
+    margin-left: 2%;
+    margin-top: 20rpx;
+    border-radius: 4%;
+}
+.bill-btn-common {
+    width: 47%;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin-left:2%;
+    margin-top: 10rpx;
+    float: left;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.edit-btn {
+    background-color: #00a4e4;
+}
+
+.delete-btn {
+    background-color: red;
+}

@@ -1,0 +1,27 @@
+<view class="container">
+	<view class="tui-searchbox">
+		<view class="tui-search-input">
+			<input confirm-type="search" bindconfirm="search" style="width:100%;font-size:25rpx;" placeholder="输入站点关键词，进行搜索..."></input>
+		</view>
+	</view>
+	<tui-view title="{{title}}" tui-view-class="tui-view" style="background-color: #f5f7fa;">
+	<block wx:for="{{siteList}}">
+			<view class="site-item">
+				<tui-cell bind:click="detail" tui-cell-class="tui-msg" data-id="{{item.id}}" data-url="{{item.site_url}}" data-collection="{{item.collection}}" data-source="{{item.source}}" data-title="{{item.second_title}}" data-author="{{item.author}}" data-created_at="{{item.created_at}}" data-collection="{{item.collection}}">
+					<view class="tui-msg-box">
+						<image src="{{item.cover}}" class="tui-msg-pic" mode="widthFix"></image>
+						<view class="tui-msg-item">
+							<view class="tui-msg-name">{{item.title}}</view>
+							<view class="tui-msg-content">{{item.desc}}</view>
+						</view>
+					</view>
+					<view class="tui-msg-right">
+						<view class="tui-msg-time">收藏</view>
+						<tui-badge type="danger" tui-badge-class="tui-badge">{{item.collection}}</tui-badge>
+					</view>						
+				</tui-cell>
+			</view>
+	</block>
+	</tui-view>
+	<!--内容部分-->
+</view>

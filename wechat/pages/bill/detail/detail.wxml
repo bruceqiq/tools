@@ -1,0 +1,80 @@
+<view class="bill-detail" hover-class="none" hover-stop-propagation="false">
+    <view class="detail-top" hover-class="none" hover-stop-propagation="false">
+        <view class="bill-top-image" hover-class="none" hover-stop-propagation="false">
+            <image class="" src="{{billInfo.tag.cover}}" style="width:64rpx;height:64rpx;"
+                mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+            </image>
+        </view>
+        <view class="bill-top-text" hover-class="none" hover-stop-propagation="false">
+            {{billInfo.tag.name}}
+        </view>
+    </view>
+
+    <view class="detail-list" hover-class="none" hover-stop-propagation="false">
+        <view class="bill-list" hover-class="none" hover-stop-propagation="false">
+            <view class="bill-list-left" hover-class="none" hover-stop-propagation="false">
+                {{text}}金额:
+            </view>
+            <view class="bill-list-right {{billInfo.type == 1 ? 'income' : 'expend'}}" hover-class="none" hover-stop-propagation="false">
+                {{billInfo.money}}
+            </view>
+        </view>
+        <view class="bill-list" hover-class="none" hover-stop-propagation="false">
+            <view class="bill-list-left" hover-class="none" hover-stop-propagation="false">
+                {{text}}日期:
+            </view>
+            <view class="bill-list-right" hover-class="none" hover-stop-propagation="false">
+                {{billInfo.transaction_date}}
+            </view>
+        </view>
+        <view class="bill-list" hover-class="none" hover-stop-propagation="false">
+            <view class="bill-list-left" hover-class="none" hover-stop-propagation="false">
+                {{text}}账户:
+            </view>
+            <view class="bill-list-right" hover-class="none" hover-stop-propagation="false">
+                {{billInfo.tag.name}}
+            </view>
+        </view>
+        <view class="bill-list" hover-class="none" hover-stop-propagation="false">
+            <view class="bill-list-left" hover-class="none" hover-stop-propagation="false">
+                {{text}}类型:
+            </view>
+            <view class="bill-list-right" hover-class="none" hover-stop-propagation="false">
+                {{billInfo.category.name}}
+            </view>
+        </view>
+        <view class="bill-list" hover-class="none" hover-stop-propagation="false">
+            <view class="bill-list-left" hover-class="none" hover-stop-propagation="false">
+                记录时间:
+            </view>
+            <view class="bill-list-right" hover-class="none" hover-stop-propagation="false">
+                {{billInfo.created_at}}
+            </view>
+        </view>
+        <view class="bill-list" hover-class="none" hover-stop-propagation="false">
+            <view class="bill-list-left" hover-class="none" hover-stop-propagation="false">
+                更新时间:
+            </view>
+            <view class="bill-list-right" hover-class="none" hover-stop-propagation="false">
+                {{billInfo.updated_at}}
+            </view>
+        </view>
+        <view class="bill-list botton-no-line" hover-class="none" hover-stop-propagation="false">
+            <view class="bill-list-left" hover-class="none" hover-stop-propagation="false">
+                {{text}}备注:
+            </view>
+            <view class="bill-list-right" hover-class="none" hover-stop-propagation="false">
+                {{billInfo.remark}}
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="bill-btn" hover-class="none" hover-stop-propagation="false">
+    <view class="bill-btn-common edit-btn" hover-class="none" bindtap="editBill" hover-stop-propagation="false">
+        修改账单
+    </view>
+    <view class="bill-btn-common delete-btn"  bindtap="delBill" hover-class="none" hover-stop-propagation="false">
+        删除账单
+    </view>
+</view>

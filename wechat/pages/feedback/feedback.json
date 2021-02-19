@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "功能反馈",
+  "backgroundColorTop": "#fff",
+  "backgroundColorBottom": "#fff",
+  "usingComponents": {
+    "tui-upload": "/components/tui-upload/tui-upload"
+  }
+}

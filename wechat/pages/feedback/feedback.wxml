@@ -1,0 +1,16 @@
+<view class="container">
+  <form catchsubmit="formSubmit" catchreset="formReset">
+    <view class="tui-cells">
+      <textarea focus="{{true}}" class="tui-textarea" bindinput="strLenListen" name="desc" placeholder="留下你宝贵的反馈吧，我们将尽可能的满足你需求..." maxlength="{{strMaxLen}}" placeholder-class="tui-phcolor-color" />
+      <view class="tui-textarea-counter">{{strLen}}/{{strMaxLen}}</view>
+    </view>
+    <text class="info-text">若不能输入，请长按输入框即可。</text>
+    <view class="tui-box-upload">
+      <tui-upload serverUrl="{{serverUrl}}" bind:complete="result" bind:remove="remove"></tui-upload>
+    </view>
+    <text class="info-text">若发现页面错误，可以通过截图反馈系统错误信息。</text>
+    <view class="submit-card">
+      <button style="width:100%" type="primary" formType="submit" class="submit-card">提交反馈</button>
+    </view>
+  </form>
+</view>

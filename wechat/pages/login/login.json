@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "tui-button": "/components/button/button"
+  },
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "登录授权"
+}

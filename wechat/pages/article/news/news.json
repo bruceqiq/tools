@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "文章阅读",
+  "backgroundColorTop": "#f2f2f2",
+  "backgroundColorBottom": "#f2f2f2",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "tui-loadmore": "../../../components/loadmore/loadmore",
+    "tui-nomore": "../../../components/nomore/nomore",
+    "tui-tips": "../../../components/tips/tips"
+  }
+}

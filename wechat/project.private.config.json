@@ -1,0 +1,101 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/video/list/list",
+          "pathName": "pages/video/list/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "pages/site/detail/detail",
+          "pathName": "pages/site/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/video/search/search",
+          "pathName": "pages/video/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/site/category/list",
+          "pathName": "pages/site/category/list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/article/detail/detail",
+          "pathName": "pages/article/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/bill/bill/bill",
+          "pathName": "pages/bill/bill/bill",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/bill/list/list",
+          "pathName": "pages/bill/list/list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/article/news/news",
+          "pathName": "pages/article/news/news",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/video/list/list",
+          "pathName": "pages/video/list/list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/bill/list/detail",
+          "pathName": "pages/bill/list/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/bill/detail/detail",
+          "pathName": "pages/bill/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/bill/bill/bill",
+          "pathName": "pages/bill/bill/bill",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

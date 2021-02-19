@@ -1,0 +1,81 @@
+<view class="container">
+    <view class="tui-order-header">
+        <view class="tui-text tui-bold">个人姓名：{{resume.name}}</view>
+        <view class="tui-text tui-bold">面试岗位：{{resume.position}}</view>
+        <view class="tui-text tui-bold">联系电话：{{resume.phone}}</view>
+        <view class="tui-text tui-bold">联系邮箱：{{resume.email}}</view>
+        <view class="tui-text tui-bold">到岗时间：{{resume.entry_date}}</view>
+        <view class="tui-text">毕业学校：{{resume.college_name}}</view>
+        <view class="tui-text">所学专业：{{resume.college_profession}}</view>
+        <view class="tui-text">学历等级：{{resume.college_grade}}</view>
+        <view class="tui-text">学制等级：{{resume.system}}</view>
+        <view class="tui-text">年龄：{{resume.age}}</view>
+        <view class="tui-text">籍贯：{{resume.native_place}}</view>
+        <view class="tui-text">居住地址：{{resume.residential_address}}</view>
+        
+    </view>
+    <view class="tui-title">技能介绍</view>
+    <view class="tui-order-tracking rich-text">
+        <rich-text nodes="{{resume.professional_skill}}"></rich-text>
+    </view>
+    <!-- college-->
+    <view class="tui-title">教育经历</view>
+    <view class="tui-order-tracking">
+        <tui-time-axis wx:for="{{college}}">
+            <tui-timeaxis-item bgcolor="none">
+            <view slot="node" class="tui-node {{item.college_status == 1 ? 'tui-bg-primary':''}}">
+                <tui-icon name="check" color="#fff" size="14" bold="{{true}}"></tui-icon>
+            </view>
+            <view slot="content">
+                <view class="tui-order-title">{{item.college_status == 1 ? '在读':'毕业'}}</view>
+                <view class="tui-order-desc">学院名称：{{item.college_name}}</view>
+                <view class="tui-order-desc">所学专业：{{item.college_profession}}</view>
+                <view class="tui-order-desc">入学日期：{{item.college_start_date}}</view>
+                <view class="tui-order-desc">毕业日期：{{item.college_end_date}}</view>
+                <view class="tui-order-desc">学历等级：{{item.college_grade}}</view>
+            </view>
+            </tui-timeaxis-item>
+        </tui-time-axis>
+    </view>
+    <!-- work -->
+    <view class="tui-title">工作经历</view>
+    <view class="tui-order-tracking">
+        <tui-time-axis >
+            <tui-timeaxis-item bgcolor="none" wx:for="{{work}}">
+            <view slot="node" class="tui-node {{item.work_status == 1 ? 'tui-bg-primary':''}}">
+                <tui-icon name="check" color="#fff" size="14" bold="{{true}}"></tui-icon>
+            </view>
+            <view slot="content">
+                <view class="tui-order-title">{{item.work_status == 1 ? '在职':'离职'}}</view>
+                <view class="tui-order-desc">公司名称：{{item.company_name}}</view>
+                <view class="tui-order-desc">所在部门：{{item.department}}</view>
+                <view class="tui-order-desc">担任职位：{{item.duty}}</view>
+                <view class="tui-order-desc">入职日期：{{item.start_date}}</view>
+                <view class="tui-order-desc">离职日期：{{item.end_date}}</view>
+                <view class="tui-order-desc">公司地址：{{item.address}}</view>
+                <view class="tui-order-desc  url" bind:tap="copy" data-url="{{item.url}}">公司官网：{{item.url}}(可点击复制)</view>
+                <view class="tui-order-desc tui-gray">负责内容：{{item.duty_content}}</view>
+            </view>
+            </tui-timeaxis-item>
+        </tui-time-axis>
+    </view>
+    <!-- project-list -->
+    <view class="tui-title">项目经历</view>
+    <view>
+        <block wx:for="{{project}}" wx:key="{{index}}">
+        <tui-collapse index="{{index}}" current="{{current}}" disabled="{{item.disabled}}" bind:click="change3">
+            <tui-list-cell hover="{{!item.disabled}}" slot="title">{{item.project_name}}({{item.work.company_name}})</tui-list-cell>
+            <view class="tui-content" slot="content">
+                <view class="project-list">项目介绍:{{item.description}}</view>
+                <view class="project-list">技术介绍:{{item.project_skill}}</view>
+                <view class="project-list">开始日期:{{item.project_start_date}}</view>
+                <view class="project-list">结束日期:{{item.project_end_date}}</view>
+                <view class="project-list">项目状态:{{item.develop_status == 1 ? '开发中':'开发结束'}}</view>
+                <view class="project-list">担任角色:{{item.duty}}</view>
+                <view class="project-list">负责内容:{{item.duty_content}}</view>
+                <view class="url project-list" bind:tap="copy" data-url="{{item.url}}">项目链接:{{item.url}}</view>
+            </view>
+        </tui-collapse>
+        </block>
+    </view>
+</view>
