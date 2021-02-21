@@ -139,17 +139,47 @@
   padding-top: 0rpx !important
 }
 .tui-cell-name {
-  padding-left: 20rpx;
-  vertical-align: middle;
-  line-height: 30rpx;
+    padding-left: 20rpx;
+    vertical-align: middle;
+    line-height: 30rpx;
 }
 .tui-list::after{
-  left: 94rpx !important
+    left: 94rpx !important
 }
 .tui-right {
-  margin-left: auto;
-  margin-right: 34rpx;
-  font-size: 26rpx;
-  line-height: 1;
-  color: #999;
+    margin-left: auto;
+    margin-right: 34rpx;
+    font-size: 26rpx;
+    line-height: 1;
+    color: #999;
+}
+
+.tui-classify-box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding: 28rpx 0;
+    background-color: #fff;
+    border-bottom: 2rpx solid #f3f4f7;
+}
+
+.tui-classify-item {
+    width: 33%;
+    text-align: center;
+    padding-top: 20rpx;
+}
+
+.tui-classify-img {
+    width: 88rpx;
+    height: 88rpx;
+}
+
+.tui-classify-name {
+    font-size: 26rpx;
+    line-height: 26rpx;
+    padding-top: 8rpx;
+    color: #555;
+    white-space: nowrap;
 }

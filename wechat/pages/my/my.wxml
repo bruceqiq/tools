@@ -1,66 +1,44 @@
 <view class='container'>
-	<view class='top-container'>
-		<image class='bg-img' src='https://youpaiyun.qqdeveloper.com/tools_bg_login.jpg'></image>
-		<view hidden='{{isLogin}}' class='user-wrapper'>
-			<view wx:if="{{avatar}}" class='user'>
-				<image class='avatar-img' src='{{avatar}}'></image>
-				<text class='user-info-mobile'>{{nickname}}</text>
-			</view>
-			<block wx:if="{{!avatar}}">
-				<navigator url='/pages/login/login' hover-class="opcity" hover-stay-time="150" class='user'>
-					<image class='avatar-img' src='https://youpaiyun.qqdeveloper.com/mine_def_touxiang_3x.png'></image>
-					<text class='user-info-mobile'>请登录</text>
-				</navigator>
-			</block>
-		</view>
-	</view>
-	<!-- 菜单容器 -->
-	<view class='bottom-container'>
-		<view class='ul-item'>
-			<view bindtap='tapEvent' data-index="2" data-key='加油站' class='item' hover-class="opcity" hover-stay-time="150">
-				<image class='item-img' src='https://youpaiyun.qqdeveloper.com/petrol-station.png'></image>
-				<text class='item-name'>加油站</text>
-			</view>
-			<view bindtap='tapEvent' data-index="2" data-key='停车场' class='item' hover-class="opcity" hover-stay-time="150">
-				<image class='item-img' src='https://youpaiyun.qqdeveloper.com/parking.png'></image>
-				<text class='item-name'>停车场</text>
-			</view>
-			<view bindtap='tapEvent' data-index="2" data-key='充电桩' class='item' hover-class="opcity" hover-stay-time="150">
-				<image class='item-img' src='https://youpaiyun.qqdeveloper.com/electric-station.png'></image>
-				<text class='item-name'>充电桩</text>
-			</view>
-		</view>
-		<view class='ul-item'>
-			<view bindtap='previewReward' class='item' hover-class="opcity" hover-stay-time="150">
-				<image class='item-img' src='https://youpaiyun.qqdeveloper.com/reward.png'></image>
-				<text class='item-name'>赞赏</text>
-			</view>
-			<view class='item' bindtap='tapEvent' hover-class="opcity" data-index="1" hover-stay-time="150">
-				<image class='item-img' src='https://youpaiyun.qqdeveloper.com/feedback.png'></image>
-				<text class='item-name'>反馈</text>
-
-			</view>
-			<view bindtap='tapEvent' data-index="3" class='item' hover-class="opcity" hover-stay-time="150">
-				<image class='item-img' src='https://youpaiyun.qqdeveloper.com/logs.png'></image>
-				<text class='item-name'>日志</text>
-			</view>
-		</view>
-	</view>
-	<!-- 菜单列表 -->
-	<tui-view title=" " tui-view-class="tui-view">
-		<navigator url="/pages/feedback/feedback">
-			<tui-cell arrow="{{true}}" tui-cell-class="tui-list">
-				<tui-icon name="evaluate" size="23" color="#ed3f14"></tui-icon>
-				<view class="tui-cell-name">功能反馈</view>
-				<view class="tui-right">功能反馈</view>
-			</tui-cell>
-		</navigator>
-		<navigator url="/pages/about/about">
-			<tui-cell arrow="{{true}}" tui-cell-class="tui-list">
-				<tui-icon name="people" size="23" color="#ed3f14"></tui-icon>
-				<view class="tui-cell-name">关于我们</view>
-				<view class="tui-right">关于我们</view>
-			</tui-cell>
-		</navigator>
-	</tui-view>
+    <view class='top-container'>
+        <image class='bg-img' src='https://youpaiyun.qqdeveloper.com/tools_bg_login.jpg'></image>
+        <view hidden='{{isLogin}}' class='user-wrapper'>
+            <view wx:if="{{avatar}}" class='user'>
+                <image class='avatar-img' src='{{avatar}}'></image>
+                <text class='user-info-mobile'>{{nickname}}</text>
+            </view>
+            <block wx:if="{{!avatar}}">
+                <navigator url='/pages/login/login' hover-class="opcity" hover-stay-time="150" class='user'>
+                    <image class='avatar-img' src='https://youpaiyun.qqdeveloper.com/mine_def_touxiang_3x.png'></image>
+                    <text class='user-info-mobile'>请登录</text>
+                </navigator>
+            </block>
+        </view>
+    </view>
+    <!-- 菜单容器 -->
+    <view class="tui-classify-box">
+        <block wx:for="{{menu}}">
+            <view bind:tap="menuRedirect" class="tui-classify-item" data-key="{{item.key}}" data-type="{{item.type}}"
+                data-url="{{item.url}}">
+                <image src="{{item.img}}" class="tui-classify-img" />
+                <view class="tui-classify-name">{{item.title}}</view>
+            </view>
+        </block>
+    </view>
+    <!-- 菜单列表 -->
+    <tui-view title=" " tui-view-class="tui-view">
+        <navigator url="/pages/feedback/feedback">
+            <tui-cell arrow="{{true}}" tui-cell-class="tui-list">
+                <tui-icon name="evaluate" size="23" color="#ed3f14"></tui-icon>
+                <view class="tui-cell-name">功能反馈</view>
+                <view class="tui-right">功能反馈</view>
+            </tui-cell>
+        </navigator>
+        <navigator url="/pages/about/about">
+            <tui-cell arrow="{{true}}" tui-cell-class="tui-list">
+                <tui-icon name="people" size="23" color="#ed3f14"></tui-icon>
+                <view class="tui-cell-name">关于我们</view>
+                <view class="tui-right">关于我们</view>
+            </tui-cell>
+        </navigator>
+    </tui-view>
 </view>

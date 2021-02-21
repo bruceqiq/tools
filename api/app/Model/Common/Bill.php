@@ -23,17 +23,9 @@ use App\Model\CommonModel;
  */
 class Bill extends CommonModel
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'bill';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
+
     protected $fillable = [
         'type',
         'money',
@@ -45,11 +37,7 @@ class Bill extends CommonModel
         'bill_category_uuid',
         'bill_tag_uuid',
     ];
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
+
     protected $casts = [
         'id'         => 'integer',
         'type'       => 'integer',
@@ -80,7 +68,7 @@ class Bill extends CommonModel
         return false;
     }
 
-    public function billUpdate(array $billInfo, int $userId,  int $id): bool
+    public function billUpdate(array $billInfo, int $userId, int $id): bool
     {
         if (Bill::query()->where([['user_id', '=', $userId], ['id', '=', $id]])->update($billInfo)) {
             return true;
@@ -92,11 +80,19 @@ class Bill extends CommonModel
 
     public function list(int $size, int $userId, array $searchWhere): array
     {
-        $dateGroup = Bill::query()->select(['transaction_date'])->where($searchWhere)->groupBy(['transaction_date'])->orderByDesc('transaction_date')->paginate($size);
+        $dateGroup = Bill::query()->select(['transaction_date'])
+            ->where($searchWhere)->groupBy(['transaction_date'])
+            ->orderByDesc('transaction_date')
+            ->paginate($size);
+
         // 当前总支出
-        $incomeMoney = Bill::query()->where([['type', '=', 1]])->where($searchWhere)->sum('money');
+        $incomeMoney = Bill::query()->where([['type', '=', 1], ['user_id', '=', $userId]])
+            ->where($searchWhere)
+            ->sum('money');
         // 当前总收入
-        $expendMoney = Bill::query()->where([['type', '=', 2]])->where($searchWhere)->sum('money');
+        $expendMoney = Bill::query()->where([['type', '=', 2], ['user_id', '=', $userId]])
+            ->where($searchWhere)
+            ->sum('money');
         $items       = $dateGroup->items();
         $returnData  = [
             'items'        => $items,
