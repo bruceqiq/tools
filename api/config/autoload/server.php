@@ -38,7 +38,11 @@ return [
         'max_request'           => 100000,
         'socket_buffer_size'    => 2 * 1024 * 1024,
         'buffer_output_size'    => 2 * 1024 * 1024,
+<<<<<<< HEAD
         'daemonize'             => (int)env('DAEMONIZE'),
+=======
+        'daemonize'             => 0,
+>>>>>>> master
         'document_root'         => BASE_PATH . '/public',
         'enable_static_handler' => true,
     ],
