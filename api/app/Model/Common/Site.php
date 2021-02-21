@@ -4,8 +4,8 @@ declare (strict_types=1);
 
 namespace App\Model\Common;
 
+use App\Model\CommonModel;
 use App\Scopes\WxAppIdSearchScope;
-use Hyperf\DbConnection\Model\Model;
 
 /**
  * @property int $id
@@ -26,7 +26,7 @@ use Hyperf\DbConnection\Model\Model;
  * @property string site_url
  * @property int $site_category_id
  */
-class Site extends Model
+class Site extends CommonModel
 {
     /**
      * The table associated with the model.
