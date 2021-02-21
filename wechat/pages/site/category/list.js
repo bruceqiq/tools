@@ -1,8 +1,8 @@
-const wxRequest = require('.././../../utils/request');
-const functions = require('.././../../utils/function');
+const wxRequest = require('.././../../utils/request')
+const functions = require('.././../../utils/function')
 const commonApi = require('../../../utils/common_api')
 
-const app = getApp();
+const app = getApp()
 Page({
     data: {
         tabbar: ["推荐分类", "进口超市", "国际名牌", "奢侈品", "海囤全球", "男装", "女装", "男鞋", "女鞋", "钟表珠宝", "手机数码", "电脑办公", "家用电器", "玩具乐器", "运动户外", "宠物生活", "特产馆"],

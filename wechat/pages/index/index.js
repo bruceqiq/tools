@@ -1,7 +1,6 @@
 const wxRequest = require('./../../utils/request.js')
 const funct = require('../../utils/function')
 const commonApi = require('../../utils/common_api')
-const app = getApp();
 Page({
     data: {
         banner: [],
