@@ -90,6 +90,8 @@ Page({
     billType: function () {
         let that = this;
         wxRequest.getRequest('v1/bill/tag/list', {}, function (data) {
+            data.item.unshift("全部账户")
+            data.list.unshift({"id":0, "name":"全部账户"})
             that.setData({
                 tags: data.item,
                 tagObject: data.list

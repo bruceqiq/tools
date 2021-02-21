@@ -24,30 +24,11 @@
 	<!--菜单-->
 	<view class="tui-classify-box">
 		<block wx:for="{{menu}}">
-			<view bind:tap="redirect" class="tui-classify-item" data-key="{{item.key}}" data-type="{{item.type}}"
+			<view bind:tap="menuRedirect" class="tui-classify-item" data-key="{{item.key}}" data-type="{{item.type}}"
 				data-url="{{item.url}}">
 				<image src="{{item.img}}" class="tui-classify-img" />
 				<view class="tui-classify-name">{{item.title}}</view>
 			</view>
 		</block>
-	</view>
-	<!-- 站点导航 -->
-	<view class="site-box" hover-class="none" hover-stop-propagation="false">
-		<view class="site-title" hover-class="none" hover-stop-propagation="false">
-			优质资源
-		</view>
-		<view class="site-content" hover-class="none" hover-stop-propagation="false">
-
-			<view class="site-list" wx:for="{{site}}" bindtap="site"  data-id="{{item.id}}" data-url="{{item.site_url}}" data-collection="{{item.collection}}" data-source="{{item.source}}" data-title="{{item.title}}" data-author="{{item.author}}" data-created_at="{{item.created_at}}" data-collection="{{item.collection}}" hover-class="none">
-				<view class="site-image" hover-class="none" hover-stop-propagation="false">
-					<image class="" style="width: 100%;height: 300rpx;" src="{{item.cover}}"	mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
-					</image>
-				</view>
-				<view class="site-text" hover-class="none" hover-stop-propagation="false">
-					<text>{{item.title}}</text>
-				</view>
-			</view>
-
-		</view>
 	</view>
 </view>

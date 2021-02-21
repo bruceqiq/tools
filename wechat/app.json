@@ -4,8 +4,6 @@
     "pages/site/list/list",
     "pages/site/category/list",
     "pages/site/detail/detail",
-    "pages/video/list/list",
-    "pages/video/detail/detail",
     "pages/weather/weather",
     "pages/my/my",
     "pages/feedback/feedback",
@@ -36,12 +34,6 @@
         "text": "首页",
         "iconPath": "static/images/tabbar/home-unselected.png",
         "selectedIconPath": "static/images/tabbar/home-selected.png"
-      },
-      {
-        "pagePath": "pages/video/list/list",
-        "text": "蛙趣",
-        "iconPath": "static/images/tabbar/video-unselected.png",
-        "selectedIconPath": "static/images/tabbar/video-selected.png"
       },
       {
         "pagePath": "pages/article/news/news",

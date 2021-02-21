@@ -47,12 +47,13 @@ class MenuController extends CommonController
         $form->image('img', '菜单图标')->required();
         $form->text('key', '菜单key')->help('用于小程序端，跳转到搜索页面，增加默认搜索。酒店');
         $form->select('type', '菜单类型')->options([
-            'search' => '地图搜索',
-            'subway' => '地铁路线',
-            'road'   => '路线规划',
-            'min'    => '外部应用(小程序)',
-            'tabbar' => '内部应用(菜单页面)',
-            'page'   => '内部应用(非菜单页面)',
+            'search'        => '地图搜索',
+            'subway'        => '地铁路线',
+            'road'          => '路线规划',
+            'min'           => '外部应用(小程序)',
+            'tabbar'        => '内部应用(菜单页面)',
+            'page'          => '内部应用(非菜单页面)',
+            'image_preview' => '当前页面图片预览',
         ])->help('适用于页面不同的跳转做处理。')->required();
         $form->number('orders', '显示顺序')->default(0)->help('值越大越显示在前')->required();
 
