@@ -134,7 +134,6 @@ Page({
     },
 
     onLoad: function () {
-        funct.showLoadding()
     },
 
     onShow: function () {

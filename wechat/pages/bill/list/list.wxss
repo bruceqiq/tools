@@ -96,8 +96,8 @@ page {
 }
 
 .bill-btn {
-  width: 64rpx;
-  height: 64rpx;
+  width: 100rpx;
+  height: 100rpx;
   position: fixed;
   right: 20rpx;
   bottom: 150rpx;

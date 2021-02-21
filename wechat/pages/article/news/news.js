@@ -37,7 +37,6 @@ Page({
                 banner:res
             })
         })
-        funct.showLoadding()
     },
     // 滚动切换标签样式
     switchTab: function (e) {

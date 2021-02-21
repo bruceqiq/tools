@@ -15,7 +15,6 @@ Page({
      * Lifecycle function--Called when page load
      */
     onLoad: function (options) {
-        funct.showLoadding()
         let id = options.id
         this.getBill(id)
     },
