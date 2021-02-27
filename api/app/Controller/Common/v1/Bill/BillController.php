@@ -65,7 +65,7 @@ class BillController extends AbstractController
         if (!empty($formData['billId'])) {
             $result = $this->billModel->billUpdate((array)$billInfo, (int)$userInfo['id'], (int)$formData['billId']);
         } else {
-            $result   = $this->billModel->billCreate((array)$billInfo);
+            $result = $this->billModel->billCreate((array)$billInfo);
         }
 
         return $result ? $this->httpResponse->success() : $this->httpResponse->error();
@@ -80,17 +80,15 @@ class BillController extends AbstractController
     {
         $requestParams = $this->request->all();
         $userInfo      = $this->jwtService->getUserInfo();
-        $searchWhere   = [];
-        if (!empty($requestParams['start_date'])) {
-            array_push($searchWhere, ['transaction_date', '>=', $requestParams['start_date']]);
-        }
-        if (!empty($requestParams['end_date'])) {
-            array_push($searchWhere, ['transaction_date', '<=', $requestParams['end_date']]);
-        }
+        $searchWhere   = [
+            ['transaction_date', '>=', $requestParams['start_date']],
+            ['transaction_date', '<=', $requestParams['end_date']],
+            ['user_id', '=', $userInfo['id']]
+        ];
         if (!empty($requestParams['tag_id'])) {
             array_push($searchWhere, ['bill_tag_uuid', '=', $requestParams['tag_id']]);
         }
-        $list = $this->billModel->list((int)$requestParams['size'], (int)$userInfo['id'], (array)$searchWhere);
+        $list = $this->billModel->list((int)$requestParams['size'], (array)$searchWhere);
         return $this->httpResponse->success($list);
     }
 
@@ -101,8 +99,8 @@ class BillController extends AbstractController
      */
     public function detail()
     {
-        $userInfo      = $this->jwtService->getUserInfo();
-        $bean = $this->billModel->detail((int)$userInfo['id'], (int)$this->request->all()['id']);
+        $userInfo = $this->jwtService->getUserInfo();
+        $bean     = $this->billModel->detail((int)$userInfo['id'], (int)$this->request->all()['id']);
 
         return $this->httpResponse->success($bean);
     }
@@ -114,7 +112,7 @@ class BillController extends AbstractController
      */
     public function delete()
     {
-        $userInfo      = $this->jwtService->getUserInfo();
+        $userInfo     = $this->jwtService->getUserInfo();
         $deleteResult = $this->billModel->del((int)$userInfo['id'], (int)$this->request->all()['id']);
 
         return $deleteResult ? $this->httpResponse->success() : $this->httpResponse->error();
