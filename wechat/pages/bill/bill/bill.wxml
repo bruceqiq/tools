@@ -29,7 +29,7 @@
         收支日期:
       </view>
       <view class="item-list-right">
-        <picker mode="date" bindchange="selectDate" start="2020-10-31" end="2100-12-31">
+        <picker mode="date" bindchange="selectDate" start="2020-09-12" end="2100-12-31">
           {{currentDate}}
         </picker>
       </view>

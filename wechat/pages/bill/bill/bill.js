@@ -26,7 +26,7 @@ Page({
         this.getBillCategory(1)
         if (options.hasOwnProperty("billId")) {// 修改操作
             let billId = options.billId;
-            wxRequest.getRequest('v1/bill/detail', { id: billId }, function (data) {
+            wxRequest.getRequest('v1/bill/detail', {id: billId}, function (data) {
                 // 处理收支类型和收支账户bill_category_uuid,bill_tag_uuid
                 that.setData({
                     billInfo: data,
@@ -223,6 +223,7 @@ Page({
         });
     },
     selectDate: function (e) {
+        console.log(e)
         this.setData({
             currentDate: e.detail.value
         })
@@ -261,16 +262,23 @@ Page({
             })
             return;
         }
+        if (new Date(formData.currentDate).getTime() < new Date('2020-09-12').getTime()) {
+            wx.showToast({
+                title: '交易日期不正确',
+                icon: 'none'
+            })
+            return;
+        }
         funct.showLoadding(2000, '账单提交中')
         wxRequest.postRequest('v1/bill/create', formData, function (result) {
             if (result.code == 1000 && that.data.billId == 0) {
-                wx.showToast({ title: '账单提交成功', icon: 'none' })
-                wx.reLaunch({ url: '/pages/bill/list/list' })
+                wx.showToast({title: '账单提交成功', icon: 'none'})
+                wx.reLaunch({url: '/pages/bill/list/list'})
             } else if (result.code == 1000 && that.data.billId != 0) {
-                wx.showToast({ title: '账单提交成功', icon: 'none' })
-                wx.reLaunch({ url: '/pages/bill/detail/detail?id='+that.data.billId })
+                wx.showToast({title: '账单提交成功', icon: 'none'})
+                wx.reLaunch({url: '/pages/bill/detail/detail?id=' + that.data.billId})
             } else {
-                wx.showToast({ title: '账单提交失败', icon: 'none' })
+                wx.showToast({title: '账单提交失败', icon: 'none'})
             }
         });
     },

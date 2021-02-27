@@ -78,7 +78,7 @@ class Bill extends CommonModel
 
     }
 
-    public function list(int $size, int $userId, array $searchWhere): array
+    public function list(int $size, array $searchWhere): array
     {
         $dateGroup = Bill::query()->select(['transaction_date'])
             ->where($searchWhere)->groupBy(['transaction_date'])
@@ -86,11 +86,11 @@ class Bill extends CommonModel
             ->paginate($size);
 
         // 当前总支出
-        $incomeMoney = Bill::query()->where([['type', '=', 1], ['user_id', '=', $userId]])
+        $incomeMoney = Bill::query()->where([['type', '=', 1]])
             ->where($searchWhere)
             ->sum('money');
         // 当前总收入
-        $expendMoney = Bill::query()->where([['type', '=', 2], ['user_id', '=', $userId]])
+        $expendMoney = Bill::query()->where([['type', '=', 2]])
             ->where($searchWhere)
             ->sum('money');
         $items       = $dateGroup->items();
@@ -103,15 +103,19 @@ class Bill extends CommonModel
             'expend_money' => $expendMoney,
         ];
         if (!empty($items)) {
+            unset($searchWhere[0]);
+            unset($searchWhere[1]);
+            var_dump($searchWhere);
             $maxDate            = $items[0]->transaction_date;
             $minDate            = $items[count($items) - 1]->transaction_date;
             $itemsChildrenItems = Bill::query()->with(['category:id,name,uuid,cover', 'tag:id,name,uuid,cover'])
-                ->where([['user_id', '=', $userId], ['transaction_date', '>=', $minDate], ['transaction_date', '<=', $maxDate]])
+                ->where([['transaction_date', '>=', $minDate], ['transaction_date', '<=', $maxDate]])
                 ->where($searchWhere)
                 ->orderByDesc('transaction_date')
                 ->get(['id', 'uuid', 'user_id', 'money', 'type', 'remark', 'transaction_date', 'bill_category_uuid', 'bill_tag_uuid']);
             $listArray          = [];
             foreach ($items as $key => $value) {
+                echo time() . PHP_EOL;
                 $list                                = [];
                 $i                                   = 0;
                 $incomeTotalMoney                    = 0.00;
@@ -130,9 +134,13 @@ class Bill extends CommonModel
                         }
                     }
                 }
-                $listArray[$key]['income_total_money'] = sprintf('%01.2f', $incomeTotalMoney);
-                $listArray[$key]['expend_total_money'] = sprintf('%01.2f', $expendTotalMoney);
-                $listArray[$key]['list']               = $list;
+                if (!empty($list)) {
+                    $listArray[$key]['income_total_money'] = sprintf('%01.2f', $incomeTotalMoney);
+                    $listArray[$key]['expend_total_money'] = sprintf('%01.2f', $expendTotalMoney);
+                    $listArray[$key]['list']               = $list;
+                } else {
+                    unset($listArray[$key]);
+                }
             }
             $returnData['items'] = $listArray;
         }
