@@ -73,7 +73,7 @@ class BillController extends AbstractController
 
     /**
      * @Middleware(UserAuthMiddleware::class)
-     * @GetMapping(path="list")
+     * @GetMapping(path="lists")
      * @return ResponseInterface
      */
     public function list()

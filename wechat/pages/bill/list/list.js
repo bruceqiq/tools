@@ -137,9 +137,11 @@ Page({
     },
 
     onShow: function () {
-        let currentDate = funct.getYearMoneyDate()
+      let date = funct.getStartEndPerMonth()
+      console.log(date)
         this.setData({
-            end_date: currentDate['full']
+          start_date: date['start'],
+          end_date: date['end'],
         })
         this.getBill(2)
         this.billType();
