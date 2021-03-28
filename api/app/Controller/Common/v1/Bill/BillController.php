@@ -81,15 +81,23 @@ class BillController extends AbstractController
         $requestParams = $this->request->all();
         $userInfo      = $this->jwtService->getUserInfo();
         $searchWhere   = [
+<<<<<<< HEAD
             ['transaction_date', '>=', empty($requestParams['start_date']) ? date('Y-m-d') : $requestParams['start_date']],
             ['transaction_date', '<=', empty($requestParams['end_date']) ? date('Y-m-d') : $requestParams['end_date']],
+=======
+            ['transaction_date', '>=', $requestParams['start_date']],
+            ['transaction_date', '<=', $requestParams['end_date']],
+>>>>>>> master
             ['user_id', '=', $userInfo['id']]
         ];
         if (!empty($requestParams['tag_id'])) {
             array_push($searchWhere, ['bill_tag_uuid', '=', $requestParams['tag_id']]);
         }
         $list = $this->billModel->list((int)$requestParams['size'], (array)$searchWhere);
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         return $this->httpResponse->success($list);
     }
 
